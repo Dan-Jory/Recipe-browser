@@ -1,13 +1,18 @@
 package org.example;
-import java.util.ArrayList;
+import jakarta.persistence.*;
 
+import java.util.List;
+
+@Entity
 public class Recipe
 {
-    private int ID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long ID;
     private String Name;
-    private ArrayList<String> Ingredients;
-
-    public int getID()
+    @ElementCollection
+    private List<String> Ingredients;
+    public long getID()
     {
         return ID;
     }
@@ -27,11 +32,11 @@ public class Recipe
         this.Name = name;
     }
 
-    public ArrayList<String> getIngredients()
+    public List<String> getIngredients()
     {
         return Ingredients;
     }
-    private void setIngredients(ArrayList<String> ingredients)
+    private void setIngredients(List<String> ingredients)
     {
         this.Ingredients = ingredients;
     }
