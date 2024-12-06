@@ -1,10 +1,7 @@
 package org.example;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Recipe
@@ -13,8 +10,8 @@ public class Recipe
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long ID;
     private String Name;
-    private ArrayList<String> Ingredients = new ArrayList<>();
-
+    @ElementCollection
+    private List<String> Ingredients;
     public long getID()
     {
         return ID;
@@ -35,11 +32,11 @@ public class Recipe
         this.Name = name;
     }
 
-    public ArrayList<String> getIngredients()
+    public List<String> getIngredients()
     {
         return Ingredients;
     }
-    private void setIngredients(ArrayList<String> ingredients)
+    private void setIngredients(List<String> ingredients)
     {
         this.Ingredients = ingredients;
     }
