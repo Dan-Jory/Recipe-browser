@@ -23,20 +23,20 @@ public class Controller
     private RecipeRepository recipeRepository;
 
     @PostMapping("/search")
-    public ResponseEntity<List<Recipe>> getRecipes(@RequestBody List<String> ingredients)
+    public ResponseEntity<List<Recipe>> getRecipes(@RequestParam("ingredient1") String ingredient1,
+                                                   @RequestParam("ingredient2") String ingredient2,
+                                                   @RequestParam("ingredient3") String ingredient3)
     {
         try
         {
             List<Recipe> matchingRecipes = new ArrayList<>();
-            for (String ingredient : ingredients)
+            List<Recipe> recipes = recipeRepository.searchIngredient(ingredient1,ingredient2,ingredient3);
+
+            for (Recipe recipe : recipes)
             {
-                List<Recipe> recipes = recipeRepository.searchIngredient(ingredient);
-                for(Recipe recipe : recipes)
+                if(!matchingRecipes.contains(recipe))
                 {
-                    if(!matchingRecipes.contains(recipe))
-                    {
-                        matchingRecipes.add(recipe);
-                    }
+                    matchingRecipes.add(recipe);
                 }
             }
             if(!matchingRecipes.isEmpty())
