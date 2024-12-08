@@ -3,10 +3,11 @@
 
 
 ## Getting started
+When setting the program up, you need to change the top 3 lines in application.properties to be your login credentials
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+Current only way of testing the code is working without a front end is using curl requests or postman. Should be in this format with the appropriate ingredients 
+curl -X POST "http://localhost:8080/api/search?ingredient1=spaghetti&ingredient2=beef&ingredient3=tomato"
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
 
 ## Add your files
 
