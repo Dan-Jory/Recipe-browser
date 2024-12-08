@@ -1,43 +1,39 @@
 package org.example;
 import jakarta.persistence.*;
-
-import java.util.List;
-
 @Entity
+@Table(name = "Recipes")
 public class Recipe
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long ID;
-    private String Name;
-    @ElementCollection
-    private List<String> Ingredients;
+    private long recipeid;
+    private String title;
+    private String ingredients;
     public long getID()
     {
-        return ID;
+        return recipeid;
     }
 
     public void setID(int id)
     {
-        this.ID = id;
+        this.recipeid = id;
     }
 
     public String getName()
     {
-        return Name;
+        return title;
     }
 
     public void setName(String name)
     {
-        this.Name = name;
+        this.title = name;
     }
 
-    public List<String> getIngredients()
+    public String getIngredients()
     {
-        return Ingredients;
+        return ingredients;
     }
-    private void setIngredients(List<String> ingredients)
+    private void setIngredients(String ingredients)
     {
-        this.Ingredients = ingredients;
+        this.ingredients = ingredients;
     }
 }

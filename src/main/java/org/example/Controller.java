@@ -1,6 +1,4 @@
 package org.example;
-import org.apache.coyote.Response;
-import org.example.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,17 +20,22 @@ public class Controller
     @Autowired
     private RecipeRepository recipeRepository;
 
+    @GetMapping("/test")
+    public String testEndpoint() {
+        return "API is working!";
+    }
+
     @PostMapping("/search")
-    public ResponseEntity<List<Recipe>> getRecipes(@RequestParam("ingredient1") String ingredient1,
+    public ResponseEntity<List<String>> getRecipes(@RequestParam("ingredient1") String ingredient1,
                                                    @RequestParam("ingredient2") String ingredient2,
                                                    @RequestParam("ingredient3") String ingredient3)
     {
         try
         {
-            List<Recipe> matchingRecipes = new ArrayList<>();
-            List<Recipe> recipes = recipeRepository.searchIngredient(ingredient1,ingredient2,ingredient3);
+            List<String> matchingRecipes = new ArrayList<>();
+            List<String> recipes = recipeRepository.searchIngredient(ingredient1,ingredient2,ingredient3);
 
-            for (Recipe recipe : recipes)
+            for (String recipe : recipes)
             {
                 if(!matchingRecipes.contains(recipe))
                 {
