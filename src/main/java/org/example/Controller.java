@@ -1,6 +1,4 @@
 package org.example;
-import org.apache.coyote.Response;
-import org.example.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +11,9 @@ import java.util.List;
 -------------------------------------------------------------
 This file handles the REST api calls to the database, only
 implemented POST as GET PUT AND DELETE aren't used.
+
+Coming back to this later, have now included GET because I
+needed to test it was working :sob:
 -------------------------------------------------------------
 */
 @RestController
@@ -22,21 +23,26 @@ public class Controller
     @Autowired
     private RecipeRepository recipeRepository;
 
+    @GetMapping("/test")
+    public String testEndpoint() {
+        return "API is working!";
+    }
+
     @PostMapping("/search")
-    public ResponseEntity<List<Recipe>> getRecipes(@RequestBody List<String> ingredients)
+    public ResponseEntity<List<String>> getRecipes(@RequestParam("ingredient1") String ingredient1,
+                                                   @RequestParam("ingredient2") String ingredient2,
+                                                   @RequestParam("ingredient3") String ingredient3)
     {
         try
         {
-            List<Recipe> matchingRecipes = new ArrayList<>();
-            for (String ingredient : ingredients)
+            List<String> matchingRecipes = new ArrayList<>();
+            List<String> recipes = recipeRepository.searchIngredient(ingredient1,ingredient2,ingredient3);
+
+            for (String recipe : recipes)
             {
-                List<Recipe> recipes = recipeRepository.searchIngredient(ingredient);
-                for(Recipe recipe : recipes)
+                if(!matchingRecipes.contains(recipe))
                 {
-                    if(!matchingRecipes.contains(recipe))
-                    {
-                        matchingRecipes.add(recipe);
-                    }
+                    matchingRecipes.add(recipe);
                 }
             }
             if(!matchingRecipes.isEmpty())
