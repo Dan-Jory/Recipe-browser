@@ -11,6 +11,9 @@ import java.util.List;
 -------------------------------------------------------------
 This file handles the REST api calls to the database, only
 implemented POST as GET PUT AND DELETE aren't used.
+
+Coming back to this later, have now included GET because I
+needed to test it was working :sob:
 -------------------------------------------------------------
 */
 @RestController
