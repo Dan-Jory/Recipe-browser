@@ -6,7 +6,8 @@
 When setting the program up, you need to change the top 3 lines in application.properties to be your login credentials
 
 Current only way of testing the code is working without a front end is using curl requests or postman. Should be in this format with the appropriate ingredients 
-curl -X POST "http://localhost:8080/api/search?ingredient1=spaghetti&ingredient2=beef&ingredient3=tomato"
+curl -X POST "http://localhost:8080/api/search?Ingredients=spaghetti&Ingredients=beef&Ingredients=tomato"
+
 
 
 ## Add your files

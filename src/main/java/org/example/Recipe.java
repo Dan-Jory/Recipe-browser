@@ -4,19 +4,24 @@ import jakarta.persistence.*;
 @Table(name = "Recipes")
 public class Recipe
 {
+    
+
+
     @Id
-    private long recipeid;
-    private String title;
-    private String ingredients;
-    public long getID()
-    {
-        return recipeid;
+    @Column(name = "recipe_id") 
+    private long recipeId;
+
+    public long getRecipeId() {
+        return recipeId;
     }
 
-    public void setID(long id) //fixed to accept long id
-    {
-        this.recipeid = id;
+    public void setRecipeId(long recipeId) {
+        this.recipeId = recipeId;
     }
+
+    private String title;
+    private String ingredients;
+
 
     public String getName()
     {

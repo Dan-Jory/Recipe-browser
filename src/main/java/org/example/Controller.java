@@ -29,14 +29,13 @@ public class Controller
     }
 
     @PostMapping("/search")
-    public ResponseEntity<List<String>> getRecipes(@RequestParam("ingredient1") String ingredient1,
-                                                   @RequestParam("ingredient2") String ingredient2,
-                                                   @RequestParam("ingredient3") String ingredient3)
+    public ResponseEntity<List<String>> getRecipes(@RequestParam("Ingredients") List<String> Ingredients)
     {
         try
         {
             List<String> matchingRecipes = new ArrayList<>();
-            List<String> recipes = recipeRepository.searchIngredient(ingredient1,ingredient2,ingredient3);
+
+            List<String> recipes = recipeRepository.searchRecipesByIngredients(Ingredients, Ingredients.size());
 
             for (String recipe : recipes)
             {
