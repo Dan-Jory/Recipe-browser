@@ -1,24 +1,35 @@
 package org.example;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
 @Entity
-@Table(name = "RecipeIngredients")
+@Table(name = "Recipe_Ingredients")
 public class RecipeIngredient {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
+    @Column(name = "id") 
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "recipe_id") 
+    @JoinColumn(name = "recipe_id", referencedColumnName = "recipe_id", nullable = false) 
     private Recipe recipe;
 
     @ManyToOne
-    @JoinColumn(name = "ingredient_id") // Foreign key to the Ingredient entity
+    @JoinColumn(name = "ingredient_id", referencedColumnName = "ingredient_id", nullable = false) 
     private Ingredient ingredient;
 
-    private String quantity; // Optional: To store the quantity of the ingredient
+    @Column(name = "quantity") 
+    private String quantity;
 
-    // Getter and Setter for id
+    // Getters and Setters
     public long getId() {
         return id;
     }
@@ -27,7 +38,6 @@ public class RecipeIngredient {
         this.id = id;
     }
 
-    // Getter and Setter for recipe
     public Recipe getRecipe() {
         return recipe;
     }
@@ -36,7 +46,6 @@ public class RecipeIngredient {
         this.recipe = recipe;
     }
 
-    // Getter and Setter for ingredient
     public Ingredient getIngredient() {
         return ingredient;
     }
@@ -45,12 +54,6 @@ public class RecipeIngredient {
         this.ingredient = ingredient;
     }
 
-    // Getter and Setter for quantity (optional)
-    public String getQuantity() {
-        return quantity;
-    }
 
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
-    }
 }
+
