@@ -19,9 +19,8 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     JOIN Ingredient i ON ri.ingredient.ingredientId = i.ingredientId
     WHERE LOWER(i.name) IN :ingredients
     GROUP BY r.title
-    HAVING COUNT(DISTINCT i.ingredientId) >= :minIngredients
+    ORDER BY COUNT(DISTINCT i.ingredientId) DESC
 """)
     List<String> searchRecipesByIngredients(
-        @Param("ingredients") List<String> ingredients, 
-        @Param("minIngredients") int minIngredients);
+        @Param("ingredients") List<String> ingredients);
 }

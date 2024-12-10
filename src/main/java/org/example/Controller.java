@@ -33,9 +33,10 @@ public class Controller
     {
         try
         {
+            final int MAXRECIPES = 10;
             List<String> matchingRecipes = new ArrayList<>();
-
-            List<String> recipes = recipeRepository.searchRecipesByIngredients(Ingredients, Ingredients.size());
+            List<String> recipes = recipeRepository.searchRecipesByIngredients(Ingredients);
+            recipes = recipes.subList(0, Math.min(recipes.size(), MAXRECIPES));
 
             for (String recipe : recipes)
             {
