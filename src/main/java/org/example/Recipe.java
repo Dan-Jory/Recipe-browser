@@ -13,7 +13,7 @@ public class Recipe
         return recipeid;
     }
 
-    public void setID(int id)
+    public void setID(long id) //fixed to accept long id
     {
         this.recipeid = id;
     }
