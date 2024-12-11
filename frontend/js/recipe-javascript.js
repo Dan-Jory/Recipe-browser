@@ -97,8 +97,9 @@ document.getElementById("searchForm").addEventListener("submit", function (event
         method: "POST",
         headers: {
             "Content-Type": "application/json", // specifies json format
+            "Accept": "application/json",
         },
-        body: JSON.stringify({ ingredients }) // sends the ingredient data
+        body: JSON.stringify(ingredients) // sends the ingredient data
     })
     .then(response => {
         if (response.ok) {
