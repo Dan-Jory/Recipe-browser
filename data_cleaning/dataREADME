@@ -1,0 +1,10 @@
+The finalised database is included in this repo, however if you're interested the scripts are attached.
+
+To use these scripts to reproduce the database. Download recipe NLG from here: https://www.kaggle.com/datasets/saldenisov/recipenlg?resource=download
+Donwload what's cooking from here https://www.kaggle.com/c/whats-cooking/data
+
+You can use requirments.txt to build a python venv, or just install ntlk using pip.
+
+
+
+
