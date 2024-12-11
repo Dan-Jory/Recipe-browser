@@ -42,10 +42,17 @@ public class Controller
         {
             System.out.println(Ingredients);
             final int MAXRECIPES = 10;
-            List<String> matchingRecipes = new ArrayList<>();
-            List<String> recipes = recipeRepository.searchRecipesByIngredients(Ingredients);
-            recipes = recipes.subList(0, Math.min(recipes.size(), MAXRECIPES));
+            
+            List<String> lcIngredients = new ArrayList<>();
+            for (String str : Ingredients) {
+                lcIngredients.add(str.toLowerCase());
+            }
 
+            List<String> recipes = recipeRepository.searchRecipesByIngredients(lcIngredients);
+            recipes = recipes.subList(0, Math.min(recipes.size(), MAXRECIPES));
+            
+
+            List<String> matchingRecipes = new ArrayList<>();
             for (String recipe : recipes)
             {
                 if(!matchingRecipes.contains(recipe))
@@ -67,4 +74,7 @@ public class Controller
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 }
+
+
