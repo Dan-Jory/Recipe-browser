@@ -1,8 +1,9 @@
 // track the amount of ingredient fields
 let ingredientCount = 1;
 
+// add event listener
 document.getElementById("addIngredient").addEventListener("click", function () {
-    ingredientCount++; // increment count by 1, so we can keep count of number of ingredients
+    ingredientCount++; // keeps track of num ingredients
 
     const ingredientFields = document.getElementById("ingredientFields");
 
@@ -14,9 +15,9 @@ document.getElementById("addIngredient").addEventListener("click", function () {
     input.type = "text";
     input.id = `ingredient${ingredientCount}`;
     input.name = `ingredient${ingredientCount}`;
-    input.required = true; // ensures the ingredient field is mandatory 
+    input.required = true; // makes sure that ingredietns arent blank
 
-    // Append the new fields to the form
+    
     ingredientFields.appendChild(label);
     ingredientFields.appendChild(input);
     ingredientFields.appendChild(document.createElement("br")); //line break after each field
@@ -50,12 +51,12 @@ document.getElementById("removeLastIngredient").addEventListener("click", functi
         const inputs = ingredientFields.querySelectorAll('input');
 
         labels.forEach((label, index) => {
-            label.textContent = `Ingredient ${index + 1}:`; // Update label text
-            label.setAttribute("for", `ingredient${index + 1}`); // Update the 'for' attribute
+            label.textContent = `Ingredient ${index + 1}:`; 
+            label.setAttribute("for", `ingredient${index + 1}`); 
 
             const input = inputs[index];
-            input.id = `ingredient${index + 1}`; // Update input 'id'
-            input.name = `ingredient${index + 1}`; // Update input 'name'
+            input.id = `ingredient${index + 1}`; 
+            input.name = `ingredient${index + 1}`; 
         });
 
 
@@ -69,16 +70,15 @@ document.getElementById("removeLastIngredient").addEventListener("click", functi
     }
 });
 
-// Add event listener to reset the form
+// reset EL 
 document.getElementById("resetIngredients").addEventListener("click", function () {
     const ingredientFields = document.getElementById("ingredientFields");
     
-    // Clear all fields by resetting the inner HTML of the ingredientFields container
+    
     ingredientFields.innerHTML = ""; 
     
-    ingredientCount = 1; // Reset the ingredient count to 1
+    ingredientCount = 1; 
     
-    // Recreate the first ingredient field
     const label = document.createElement("label");
     label.setAttribute("for", "ingredient1");
     label.textContent = "Ingredient 1:";
@@ -125,10 +125,9 @@ document.getElementById("searchForm").addEventListener("submit", function (event
         if (response.ok) {
             return response.json(); // Parse response as JSON
         } else if (response.status === 204) {
-            // If no content, return an empty array
             return [];
         } else {
-            throw new Error("Failed to fetch recipes."); // Handle errors
+            throw new Error("Failed to fetch recipes."); 
         }
     })
     .then(data => {
