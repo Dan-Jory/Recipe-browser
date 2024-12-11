@@ -6,31 +6,38 @@
     <title>Recipe Finder</title>
 </head>
 <body>
-    <!-- Main Title -->
+    <!--main title-->
     <h1>Recipe Finder</h1>
-    <p>Welcome to the SSH Recipe finder! Simply enter the ingredients you have, and we will help you discover a range of delicious recipes! </p>
+    <p>Welcome to the SSH Recipe finder! Simply enter the ingredients you have, and we will help you discover a range of recipes!</p>
     
     <form id="searchForm">
         <div id="ingredientFields">
-            <!-- The first ingredient input -->
+            <!--the first ingredient input -->
             <label for="ingredient1">Ingredient 1:</label>
             <input type="text" id="ingredient1" name="ingredient1" required><br><br>
         </div>
-        <!-- Button to add more ingredients -->
-        <button type="button" id="addIngredient">+ Add Ingredient</button><br><br>
-        <!-- Button to submit the form -->
+        
+        <!--button to add ingredient -->
+        <button type="button" id="addIngredient">+ Add Ingredient</button>
+        <!--button to remove the last ingredient-->
+        <button type="button" id="removeLastIngredient">Remove Last Ingredient</button><br><br>
+        
+        <!--button to submit the form-->
         <button type="submit">Find Recipes</button>
+        
+        <!--button to reset all ingredients -->
+        <button type="button" id="resetIngredients">Reset Ingredients</button>
     </form>
 
-    <!-- Display Area for Matching Recipes -->
+    <!--recipe display -->
     <h2>Recipes:</h2>
     <ul id="recipeList"></ul>
 
-<!-- Link to the CSS file -->
-<link rel="stylesheet" href="styles-css.css">
+    <!--link to the CSS file -->
+    <link rel="stylesheet" href="styles-css.css">
 
-<!-- Link to the JavaScript file -->
-<script src="recipe-javascript.js"></script>
+    <!--link to the JavaScript file -->
+    <script src="recipe-javascript.js"></script>
 
 </body>
 </html>
