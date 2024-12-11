@@ -5,7 +5,12 @@ import jakarta.persistence.*;
 public class Recipe
 {
     
-
+    public Recipe(long id, String title, String link)
+    {
+        this.recipeId = id;
+        this.title = title;
+        this.link = link;
+    }
 
     @Id
     @Column(name = "recipe_id") 
@@ -20,8 +25,14 @@ public class Recipe
     }
 
     private String title;
-    private String ingredients;
+    private String link;
 
+    public String getLink(){
+        return link;
+    }
+    public void setLink(String name){
+        this.link=name;
+    }
 
     public String getName()
     {
@@ -33,12 +44,4 @@ public class Recipe
         this.title = name;
     }
 
-    public String getIngredients()
-    {
-        return ingredients;
-    }
-    private void setIngredients(String ingredients)
-    {
-        this.ingredients = ingredients;
-    }
 }
