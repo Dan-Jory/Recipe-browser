@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Finder</title>
+</head>
+<body>
+    <!--main title-->
+    <h1>Recipe Finder</h1>
+    <p>Welcome to the SSH Recipe finder! Simply enter the ingredients you have, and we will help you discover a range of recipes!</p>
+    
+    <form id="searchForm">
+        <div id="ingredientFields">
+            <!--the first ingredient input -->
+            <label for="ingredient1">Ingredient 1:</label>
+            <input type="text" id="ingredient1" name="ingredient1" required><br><br>
+        </div>
+        
+        <!--button to add ingredient -->
+        <button type="button" id="addIngredient">+ Add Ingredient</button>
+        <!--button to remove the last ingredient-->
+        <button type="button" id="removeLastIngredient">Remove Last Ingredient</button><br><br>
+        
+        <!--button to submit the form-->
+        <button type="submit">Find Recipes</button>
+        
+        <!--button to reset all ingredients -->
+        <button type="button" id="resetIngredients">Reset Ingredients</button>
+    </form>
+
+    <!--recipe display -->
+    <h2>Recipes:</h2>
+    <ul id="recipeList"></ul>
+
+    <!--link to the CSS file -->
+    <link rel="stylesheet" href="styles-css.css">
+
+    <!--link to the JavaScript file -->
+    <script src="../js/recipe-javascript.js"></script>
+
+</body>
+</html>
