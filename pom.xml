@@ -31,6 +31,23 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
             <version>3.3.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>3.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+            <version>3.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.hakky54</groupId>
+            <artifactId>logcaptor</artifactId>
+            <version>2.10.0</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <properties>
