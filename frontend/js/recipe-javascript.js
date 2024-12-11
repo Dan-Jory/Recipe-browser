@@ -1,8 +1,8 @@
-// Track the number of ingredient fields
+// track the amount of ingredient fields
 let ingredientCount = 1;
 
 document.getElementById("addIngredient").addEventListener("click", function () {
-    ingredientCount++;
+    ingredientCount++; //increment count by 1, so we can keep count of number of ingredients
 
     const ingredientFields = document.getElementById("ingredientFields");
 
@@ -14,7 +14,7 @@ document.getElementById("addIngredient").addEventListener("click", function () {
     input.type = "text";
     input.id = `ingredient${ingredientCount}`;
     input.name = `ingredient${ingredientCount}`;
-    input.required = true; // Add the required attribute
+    input.required = true; //ensurees the ingredient filed is mandatory 
 
     ingredientFields.appendChild(label);
     ingredientFields.appendChild(input);
@@ -22,28 +22,28 @@ document.getElementById("addIngredient").addEventListener("click", function () {
     ingredientFields.appendChild(document.createElement("br"));
 });
 
-// Add an event listener to the form submission
+//add event listener
 document.getElementById("searchForm").addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent the default form submission behavior
+    event.preventDefault(); //
 
-    // Collect all ingredient values dynamically
+    //collect ingredients
     const ingredients = [];
     for (let i = 1; i <= ingredientCount; i++) {
         const ingredientValue = document.getElementById(`ingredient${i}`).value.trim();
         if (ingredientValue) {
-            ingredients.push(ingredientValue);
+            ingredients.push(ingredientValue); //adds the contents of the ingredient field to an array
         }
     }
 
-    console.log("Ingredients being sent:", ingredients);
+    console.log("Ingredients being sent:", ingredients); //i used this to test that the ingredients were being collected correctly (can be seen in the console)
 
     // Send a POST request to the backend API with the ingredients
     fetch("http://localhost:8080/api/search", {
         method: "POST",
         headers: {
-            "Content-Type": "application/json", // Specify JSON format
+            "Content-Type": "application/json", //specifies json format
         },
-        body: JSON.stringify({ ingredients }) // Send all ingredient data in the body
+        body: JSON.stringify({ ingredients }) //sends the ingredient data
     })
     .then(response => {
         if (response.ok) {
@@ -73,7 +73,7 @@ document.getElementById("searchForm").addEventListener("submit", function (event
         }
     })
     .catch(error => {
-        // Log and display errors
+        //log and display errors
         console.error(error);
         alert("An error occurred while fetching recipes.");
     });
