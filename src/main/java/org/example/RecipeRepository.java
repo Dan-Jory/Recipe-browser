@@ -13,14 +13,14 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     Controller.java
     --------------------------------------------------*/
     @Query("""
-    SELECT r.title
+    SELECT r.recipeId, r.title, r.link
     FROM Recipe r
     JOIN RecipeIngredient ri ON r.recipeId = ri.recipe.recipeId
     JOIN Ingredient i ON ri.ingredient.ingredientId = i.ingredientId
     WHERE LOWER(i.name) IN :ingredients
-    GROUP BY r.title
+    GROUP BY r.title, r.link, r.recipeId
     ORDER BY COUNT(DISTINCT i.ingredientId) DESC
 """)
-    List<String> searchRecipesByIngredients(
+    List<Object[]> searchRecipesByIngredients(
         @Param("ingredients") List<String> ingredients);
 }

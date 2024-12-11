@@ -97,6 +97,7 @@ document.getElementById("resetIngredients").addEventListener("click", function (
 });
 
 
+
 // add event listener
 document.getElementById("searchForm").addEventListener("submit", function (event) {
     event.preventDefault(); //
@@ -135,14 +136,27 @@ document.getElementById("searchForm").addEventListener("submit", function (event
         const recipeList = document.getElementById("recipeList");
         recipeList.innerHTML = ""; // Clear previous results
 
+        const midPoint = Math.ceil(data.length / 2);
+        const titles = data.slice(0, midPoint);
+        const links = data.slice(midPoint);
+
         if (data.length === 0) {
             // If no recipes found
             recipeList.innerHTML = "<li>No recipes found.</li>";
         } else {
             // Display each recipe as a list item
-            data.forEach(recipe => {
+            titles.forEach((title, index) => {
                 const listItem = document.createElement("li");
-                listItem.textContent = recipe;
+                const button = document.createElement("Button");
+                button.textContent = title;
+                button.style.cursor= "pointer";
+
+                button.addEventListener("click", () => {
+                    const link = links[index];
+                    const validLink = (link.startsWith("http://") || link.startsWith("https://")) ? link : `https://${link}`;
+                    window.open(validLink, "_blank"); 
+                });
+                listItem.appendChild(button);
                 recipeList.appendChild(listItem);
             });
         }
@@ -153,4 +167,3 @@ document.getElementById("searchForm").addEventListener("submit", function (event
         alert("An error occurred while fetching recipes.");
     });
 });
-

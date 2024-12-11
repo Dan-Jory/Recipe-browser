@@ -1,6 +1,7 @@
 package org.example;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,25 +42,29 @@ public class Controller
         try
         {
             System.out.println(Ingredients);
-            final int MAXRECIPES = 10;
             
             List<String> lcIngredients = new ArrayList<>();
             for (String str : Ingredients) {
                 lcIngredients.add(str.toLowerCase());
             }
 
-            List<String> recipes = recipeRepository.searchRecipesByIngredients(lcIngredients);
-            recipes = recipes.subList(0, Math.min(recipes.size(), MAXRECIPES));
+            List<String> matchingRecipes = new ArrayList<>();
+            List<Object[]> results = recipeRepository.searchRecipesByIngredients(lcIngredients);
+List<Recipe> recipes = results.stream()
+    .map(result -> new Recipe((long) result[0], (String) result[1], (String) result[2]))
+    .collect(Collectors.toList());
             
 
-            List<String> matchingRecipes = new ArrayList<>();
-            for (String recipe : recipes)
+            System.out.println("Recipes:");
+            for(Recipe recipe: recipes)
             {
-                if(!matchingRecipes.contains(recipe))
-                {
-                    matchingRecipes.add(recipe);
-                }
+                matchingRecipes.add(recipe.getName());
             }
+            for(Recipe recipe: recipes)
+            {
+                matchingRecipes.add(recipe.getLink());
+            }
+
             if(!matchingRecipes.isEmpty())
             {
                 return new ResponseEntity<>(matchingRecipes, HttpStatus.OK);
@@ -71,6 +76,8 @@ public class Controller
         }
         catch(Exception e)
         {
+            System.out.println("Exception");
+            System.out.println(e.getMessage());
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
