@@ -32,20 +32,40 @@ document.getElementById("removeLastIngredient").addEventListener("click", functi
         const lastLabel = ingredientFields.querySelector(`label[for="ingredient${ingredientCount}"]`);
         const lastInput = ingredientFields.querySelector(`#ingredient${ingredientCount}`);
         
+        
+
+        // couldn't figure out how to remove line breaks properly so im just removing them all then adding them back in 
+        const allBrs = ingredientFields.querySelectorAll('br');
+        allBrs.forEach(br => ingredientFields.removeChild(br)); //remove all lb
+
         ingredientFields.removeChild(lastLabel);
         ingredientFields.removeChild(lastInput);
+
+        
         
         //decrease the ingredient count
         ingredientCount--;
 
-        // Renumber the remaining ingredients to maintain a sequential order
-        let fields = ingredientFields.querySelectorAll('label');
-        fields.forEach((field, index) => {
-            field.textContent = `Ingredient ${index + 1}:`; // Update text content with correct numbering
-            let inputField = ingredientFields.querySelector(`#ingredient${index + 1}`);
-            inputField.id = `ingredient${index + 1}`;
-            inputField.name = `ingredient${index + 1}`;
+        const labels = ingredientFields.querySelectorAll('label');
+        const inputs = ingredientFields.querySelectorAll('input');
+
+        labels.forEach((label, index) => {
+            label.textContent = `Ingredient ${index + 1}:`; // Update label text
+            label.setAttribute("for", `ingredient${index + 1}`); // Update the 'for' attribute
+
+            const input = inputs[index];
+            input.id = `ingredient${index + 1}`; // Update input 'id'
+            input.name = `ingredient${index + 1}`; // Update input 'name'
         });
+
+
+        labels.forEach((label, index) => { //add all the lb back
+            ingredientFields.appendChild(label);
+            ingredientFields.appendChild(inputs[index]);
+            ingredientFields.appendChild(document.createElement("br"));
+            ingredientFields.appendChild(document.createElement("br"));
+        });
+
     }
 });
 
