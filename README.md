@@ -5,7 +5,7 @@
 ## Getting started
 In order to run the recipe browser, you must have a version of Java 17 or higher downloaded and installed (To work with spring-boot). We also used PostgreSQL version 16.2, so earlier versions may not work.
 
-First, clone the repo to an IDE so that you can run the program more easily. We used IntelliJ Ultimate, so we recommend that. Then create a database in PostgreSQL, and using the ssh_recipes_final.sql file in a query, execute the query to populate the database. We suggest you run a simple select query to check it's populated
+First, clone the repo to an IDE so that you can run the program more easily. We used IntelliJ Ultimate, so we recommend that. We also used Maven as our package manager to keep track of our dependencies. Then create a database in PostgreSQL, and using the ssh_recipes_final.sql file in a query, execute the query to populate the database. We suggest you run a simple select query to check it's populated
 
 Next in the application.properties, you must change the top 3 lines to your database's information (The DB Name, the username and password to log in) and save the changes. Then run the Main.java file and the recipe-html.html file, and a tab should open, with the website loaded. The backend may take a few seconds to start up but once it has, you input your ingredients and receive your recipes back from there!
 
