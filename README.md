@@ -24,7 +24,7 @@ This project was largely based on Finlay’s EDR. This can be briefly summarised
 
 For the most part we did not make any changes. However, we did work with a slightly different tech stack, such as using Java SpringBoot in the backend rather than python Django. Our project was successful overall, we managed to build a webpage that allows users to input ingredients, and displays a list of recipes, each with a hyperlink to a website attached to it. The website is very functional, and because of the size of the database returns lots of recipes. 
 
-![alt text] https://imgur.com/a/y6ViIDo 
+![alt text] (https://imgur.com/a/y6ViIDo) 
 
  
 
